@@ -13,8 +13,8 @@ my $pp = Crypt::Skip32->new($key);
 my $xs = Crypt::Skip32::XS->new($key);
 
 my $benchmarks = timethese -1, {
-    pp => sub { $pp->decrypt($pp->encrypt($text)) },
-    xs => sub { $xs->decrypt($xs->encrypt($text)) },
+    perl => sub { $pp->decrypt($pp->encrypt($text)) },
+    xs   => sub { $xs->decrypt($xs->encrypt($text)) },
 };
 
 cmpthese $benchmarks;

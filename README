@@ -1,7 +1,7 @@
 Crypt::Skip32::XS
 =================
 
-This module provides a faster implementation of Crypt::Skip32 using C and XS.
+This module provides a drop-in replacement for Crypt::Skip32.
 
 INSTALLATION
 

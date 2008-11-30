@@ -1,4 +1,10 @@
 Revision history for Crypt-Skip32-XS
 
+0.02  Sun Nov 23 06:18:35 UTC 2008
+    - Avoided using a for loop to copy the key into the object.
+    - Tweaked pod.
+    - Moved the benchmarking script to ex/ for more kwalitee.
+    - Used warnings for more kwalitee.
+
 0.01  Thu Nov 20 18:39:17 UTC 2008
     - Initial distribution.

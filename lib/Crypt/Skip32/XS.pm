@@ -1,8 +1,9 @@
 package Crypt::Skip32::XS;
 
 use strict;
+use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 eval {
     require XSLoader;
@@ -23,7 +24,7 @@ Crypt::Skip32::XS - Drop-in replacement for Crypt::Skip32
 
 =head1 SYNOPSIS
 
-    use Crypt::Skip32;
+    use Crypt::Skip32::XS;
 
     $cipher     = Crypt::Skip32::XS->new($key);
     $ciphertext = $cipher->encrypt($plaintext);
@@ -31,8 +32,8 @@ Crypt::Skip32::XS - Drop-in replacement for Crypt::Skip32
 
 =head1 DESCRIPTION
 
-The C<Crypt::Skip32::XS> module is similar in function to C<Crypt::Skip32>, 
-but is substantially faster as its written in XS and not just pure Perl.
+The C<Crypt::Skip32::XS> module is similar in function to C<Crypt::Skip32>,
+but is substantially faster as it is written in XS and not just pure Perl.
 
 =head1 METHODS
 
@@ -42,27 +43,27 @@ but is substantially faster as its written in XS and not just pure Perl.
 
     $cipher = Crypt::Skip32::XS->new($key);
 
-Creates a new Crypt::Skip32::XS cipher object with the given key. The key 
+Creates a new Crypt::Skip32::XS cipher object with the given key. The key
 B<must> be 10 bytes long.
 
 =item encrypt
 
     $ciphertext = $cipher->encrypt($plaintext);
 
-Encrypts plaintext and returns the ciphertext.  The plaintext B<must> be of 4 
+Encrypts plaintext and returns the ciphertext.  The plaintext B<must> be of 4
 bytes long.
 
 =item decrypt
 
     $plaintext = $cipher->decrypt($ciphertext);
 
-Decrypts ciphertext and returns the plaintext.  The ciphertext B<must> be 4 
+Decrypts ciphertext and returns the plaintext.  The ciphertext B<must> be 4
 bytes long.
 
 =item blocksize
 
     $blocksize = $cipher->blocksize;
-    $blocksize = Crypt::Skip32->blocksize;
+    $blocksize = Crypt::Skip32::XS->blocksize;
 
 Returns the size (in bytes) of the block cipher, which is always 4.
 
@@ -77,16 +78,16 @@ Returns the size (in bytes) of the key, which is always 10.
 
 =head1 PERFORMANCE
 
-This distribution contains a benchmark script which compares 
-C<Crypt::Skip32::XS> with C<Crypt::Skip32>.  These are the results on a 
+This distribution contains a benchmarking script which compares
+C<Crypt::Skip32::XS> with C<Crypt::Skip32>.  These are the results on a
 MacBook 2GHz with Perl 5.8.8:
 
-    Benchmark: running pp, xs for at least 1 CPU seconds...
-            pp:  1 wallclock secs ( 1.07 usr +  0.01 sys =  1.08 CPU) @ 3555.56/s (n=3840)
+    Benchmark: running perl, xs for at least 1 CPU seconds...
+          perl:  1 wallclock secs ( 1.07 usr +  0.01 sys =  1.08 CPU) @ 3555.56/s (n=3840)
             xs:  1 wallclock secs ( 1.08 usr +  0.01 sys =  1.09 CPU) @ 263044.95/s (n=286719)
-           Rate    pp    xs
-    pp   3542/s    --  -99%
-    xs 263474/s 7339%    --
+             Rate  perl    xs
+    perl   3542/s    --  -99%
+    xs   263474/s 7339%    --
 
 =head1 SEE ALSO
 
@@ -97,8 +98,8 @@ L<http://en.wikipedia.org/wiki/Skipjack_(cipher)>
 =head1 REQUESTS AND BUGS
 
 Please report any bugs or feature requests to 
-L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Crypt-Skip32-XS>. I will be 
-notified, and then you'll automatically be notified of progress on your bug as 
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Crypt-Skip32-XS>. I will be
+notified, and then you'll automatically be notified of progress on your bug as
 I make changes.
 
 =head1 SUPPORT

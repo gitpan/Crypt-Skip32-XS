@@ -21,7 +21,6 @@ new (class, key)
 PREINIT:
     STRLEN key_size;
     unsigned char *bytes;
-    IV i;
 CODE:
     if (! SvPOK(key)) {
         croak("key must be an untained string scalar");
@@ -33,9 +32,7 @@ CODE:
     }
 
     New(0, RETVAL, 1, struct skip32);
-    for (i=0; i<key_size; i++) {
-        RETVAL->key[i] = bytes[i];
-    }
+    Copy(bytes, RETVAL->key, key_size, unsigned char);
 OUTPUT:
     RETVAL
 

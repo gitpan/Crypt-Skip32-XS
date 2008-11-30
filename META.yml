@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Crypt-Skip32-XS
-version:            0.01
+version:            0.02
 abstract:           Drop-in replacement for Crypt::Skip32
 author:
     - gray <gray@cpan.org>

@@ -4,7 +4,6 @@ use Test::More tests => 46;
 use Crypt::Skip32::XS;
 
 # Most of this is copied from Crypt::Skip32
-my $counter = 0;
 
 # Create cipher
 my $cipher1 = new Crypt::Skip32::XS pack("H20", "DE2624BD4FFC4BF09DAB");
