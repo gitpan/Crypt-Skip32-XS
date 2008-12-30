@@ -3,6 +3,9 @@ use strict;
 use warnings;
 
 use Benchmark qw(cmpthese timethese);
+
+BEGIN { $ENV{CRYPT_SKIP32_PP} = 1 }
+
 use Crypt::Skip32;
 use Crypt::Skip32::XS;
 

@@ -1,4 +1,4 @@
-/* 
+/*
    SKIP32 -- 32 bit block cipher based on SKIPJACK.
    Written by Greg Rose, QUALCOMM Australia, 1999/04/27.
 
@@ -8,7 +8,7 @@
               Panu Rissanen <bande@lut.fi>
 
    SKIPJACK and KEA Algorithm Specifications 
-   Version 2.0 
+   Version 2.0
    29 May 1998
 
    Not copyright, no rights reserved.
@@ -82,46 +82,4 @@ skip32 (BYTE key[10], BYTE buf[4], int encrypt) {
     /* implicitly swap halves while unpacking */
     buf[0] = wr >> 8;  buf[1] = wr & 0xFF;
     buf[2] = wl >> 8;  buf[3] = wl & 0xFF;
-}
-
-#include <stdio.h>
-int main(int ac, char *av[])
-{
-    BYTE in[4] = { 0x33,0x22,0x11,0x00 };
-    BYTE key[10] = { 0x00,0x99,0x88,0x77,0x66,0x55,0x44,0x33,0x22,0x11 };
-    int  i, encrypt;
-    int  bt;
-
-    if (ac == 1) {
-        skip32(key, in, 1);
-        printf("%02x%02x%02x%02x\n", in[0], in[1], in[2], in[3]);
-        if (in[0] != 0x81 || in[1] != 0x9d || in[2] != 0x5f || in[3] != 0x1f) {
-            printf("819d5f1f is the answer! Didn't encrypt correctly!\n");
-            return 1;
-        }
-        skip32(key, in, 0);
-        if (in[0] != 0x33 || in[1] != 0x22 || in[2] != 0x11 || in[3] != 0x00) {
-            printf("%02x%02x%02x%02x\n", in[0], in[1], in[2], in[3]);
-            printf("33221100 is the answer! Didn't decrypt correctly!\n");
-            return 1;
-        }
-    }
-    else if (ac != 4) {
-        fprintf(stderr, "usage: %s e/d kkkkkkkkkkkkkkkkkkkk dddddddd\n", av[0]);
-        return 1;
-    }
-    else {
-        encrypt = av[1][0] == 'e';
-        for (i = 0; i < 10; ++i) {
-            sscanf(&av[2][i*2], "%02x", &bt);
-            key[i] = bt;
-        }
-        for (i = 0; i < 4; ++i) {
-            sscanf(&av[3][i*2], "%02x", &bt);
-            in[i] = bt;
-        }
-        skip32(key, in, encrypt);
-        printf("%02x%02x%02x%02x\n", in[0], in[1], in[2], in[3]);
-    }
-    return 0;
 }

@@ -3,7 +3,7 @@ package Crypt::Skip32::XS;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 eval {
     require XSLoader;
@@ -33,7 +33,10 @@ Crypt::Skip32::XS - Drop-in replacement for Crypt::Skip32
 =head1 DESCRIPTION
 
 The C<Crypt::Skip32::XS> module is similar in function to C<Crypt::Skip32>,
-but is substantially faster as it is written in XS and not just pure Perl.
+but is substantially faster as it is written in C/XS instead of pure Perl.
+
+NOTE: As of version 0.10, Crypt::Skip32 automatically uses this module if
+it is installed.
 
 =head1 METHODS
 
