@@ -4,6 +4,7 @@
 #include "perl.h"
 #include "XSUB.h"
 #include "ppport.h"
+
 #include "_skip32.c"
 
 typedef struct skip32 {
@@ -23,7 +24,7 @@ PREINIT:
     unsigned char *bytes;
 CODE:
     if (! SvPOK(key)) {
-        croak("key must be an untained string scalar");
+        croak("key must be an untainted string scalar");
     }
 
     bytes = (unsigned char *)SvPV(key, key_size);
@@ -61,7 +62,7 @@ PREINIT:
 CODE:
     block_size = SvCUR(input);
     if (4 != block_size) {
-        croak("input must be 4 bytes long");
+        croak("%stext must be 4 bytes long", ix ? "plain" : "cipher");
     }
 
     RETVAL = newSVsv(input);
